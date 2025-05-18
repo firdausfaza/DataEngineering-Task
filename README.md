@@ -41,75 +41,75 @@ Dataset ini berisi informasi tentang perjalanan taksi di New York City, termasuk
 
 ### Diagram Alur ETL
 ```
-                           ┌─────────────┐
-                           │    Start    │
-                           └──────┬──────┘
-                                 │
-                                 ▼
-                           ┌─────────────┐
-                           │  Download   │
-                           │    Data     │
-                           └──────┬──────┘
-                                 │
-                                 ▼
-                           ┌─────────────┐
-                           │ File Exists?│
-                           └──────┬──────┘
-                                 │
-                              ┌───┴───┐
-                              │       │
-                              ▼       ▼
-                           ┌─────┐ ┌─────┐
-                           │ Yes │ │ No  │
-                           └──┬──┘ └──┬──┘
-                              │       │
-                              ▼       ▼
-                           ┌─────┐ ┌─────┐
-                           │Skip │ │Download│
-                           └──┬──┘ └──┬──┘
-                              │       │
-                              └───┬───┘
-                                 │
-                                 ▼
-                           ┌─────────────┐
-                           │ Load Data   │
-                           └──────┬──────┘
-                                 │
-                                 ▼
-                           ┌─────────────┐
-                           │ Transform   │
-                           │   Data      │
-                           └──────┬──────┘
-                                 │
-                                 ▼
-                           ┌─────────────┐
-                           │  Validate   │
-                           │   Data      │
-                           └──────┬──────┘
-                                 │
-                                 ▼
-                           ┌─────────────┐
-                           │ Duplicate?  │
-                           └──────┬──────┘
-                                 │
-                              ┌───┴───┐
-                              │       │
-                              ▼       ▼
-                           ┌─────┐ ┌─────┐
-                           │ Yes │ │ No  │
-                           └──┬──┘ └──┬──┘
-                              │       │
-                              ▼       ▼
-                           ┌─────┐ ┌─────────────┐
-                           │ Log │ │ Load to DB  │
-                           └──┬──┘ └──────┬──────┘
-                              │           │
-                              └─────┬─────┘
+                              ┌─────────────┐
+                              │    Start    │
+                              └──────┬──────┘
                                     │
                                     ▼
-                           ┌─────────────┐
-                           │    End      │
-                           └─────────────┘
+                              ┌─────────────┐
+                              │  Download   │
+                              │    Data     │
+                              └──────┬──────┘
+                                    │
+                                    ▼
+                              ┌─────────────┐
+                              │ File Exists?│
+                              └──────┬──────┘
+                                    │
+                                 ┌───┴───┐
+                                 │       │
+                                 ▼       ▼
+                              ┌─────┐ ┌─────┐
+                              │ Yes │ │ No  │
+                              └──┬──┘ └──┬──┘
+                                 │       │
+                                 ▼       ▼
+                              ┌─────┐ ┌─────┐
+                              │Skip │ │Download│
+                              └──┬──┘ └──┬──┘
+                                 │       │
+                                 └───┬───┘
+                                    │
+                                    ▼
+                              ┌─────────────┐
+                              │ Load Data   │
+                              └──────┬──────┘
+                                    │
+                                    ▼
+                              ┌─────────────┐
+                              │ Transform   │
+                              │   Data      │
+                              └──────┬──────┘
+                                    │
+                                    ▼
+                              ┌─────────────┐
+                              │  Validate   │
+                              │   Data      │
+                              └──────┬──────┘
+                                    │
+                                    ▼
+                              ┌─────────────┐
+                              │ Duplicate?  │
+                              └──────┬──────┘
+                                    │
+                                 ┌───┴───┐
+                                 │       │
+                                 ▼       ▼
+                              ┌─────┐ ┌─────┐
+                              │ Yes │ │ No  │
+                              └──┬──┘ └──┬──┘
+                                 │       │
+                                 ▼       ▼
+                              ┌─────┐ ┌─────────────┐
+                              │ Log │ │ Load to DB  │
+                              └──┬──┘ └──────┬──────┘
+                                 │           │
+                                 └─────┬─────┘
+                                       │
+                                       ▼
+                              ┌─────────────┐
+                              │    End      │
+                              └─────────────┘
 ```
 
 ### Diagram Arsitektur Sistem
@@ -215,19 +215,33 @@ Dataset ini berisi informasi tentang perjalanan taksi di New York City, termasuk
 ```
 .
 ├── docker-compose.yml      # Konfigurasi Docker untuk PostgreSQL
-├── .env                    # Variabel lingkungan untuk koneksi database
-├── setup.sh               # Script setup untuk environment
-├── data/                  # Folder untuk menyimpan data
-│   ├── raw/              # Data mentah yang diunduh
-│   └── processed/        # Data yang sudah diproses
-├── src/                   # Kode sumber
-│   ├── sql/              # File SQL
-│   │   └── solutions.sql # Query SQL untuk Bagian 1
-│   └── python/           # Script Python
-│       └── ny_taxi_etl.py # Script ETL untuk data NY Taxi
-├── sql/                   # File SQL untuk setup database
-├── requirements.txt       # Daftar dependensi Python
-└── README.md             # File ini
+├── ny_taxi_etl.log         # File log untuk proses ETL
+├── py.md                   # Dokumentasi kode Python
+├── README.md               # Dokumentasi proyek
+├── requirements.txt        # Daftar dependensi Python
+├── schema.md               # Dokumentasi struktur database
+├── setup.sh                # Script setup untuk environment
+├── data/                   # Folder untuk menyimpan data
+│   ├── explore.ipynb       # Jupyter notebook untuk eksplorasi data
+│   ├── processed/          # Data yang sudah diproses
+│   └── raw/                # Data mentah yang diunduh
+├── pgdata_purwadika/       # Data PostgreSQL (dikelola oleh Docker)
+├── sql/                    # File SQL untuk setup database
+│   ├── exercise.tar        # Arsip file latihan SQL
+│   ├── orders.sql          # Data untuk tabel orders
+│   ├── products.sql        # Data untuk tabel products
+│   ├── reviews.sql         # Data untuk tabel reviews
+│   ├── schema.sql          # Definisi skema database
+│   └── users.sql           # Data untuk tabel users
+└── src/                    # Kode sumber
+    ├── python/             # Script Python
+    │   ├── database.py     # Modul untuk koneksi dan operasi database
+    │   ├── data_processor.py # Modul untuk pemrosesan data
+    │   ├── ny_taxi_etl.py  # Script ETL untuk data NY Taxi
+    │   ├── run_sql_queries.py # Script untuk menjalankan query SQL
+    │   ├── setup_database.py # Script untuk setup database
+    │   └── utils.py        # Fungsi utilitas
+    └── sql/                # Script SQL
 ```
 
 ## Instruksi Setup
@@ -384,4 +398,4 @@ Untuk dokumentasi lebih detail, silakan merujuk ke:
 4. **Error Penyimpanan Data**:
    - Pastikan folder `data/raw` dan `data/processed` ada
    - Periksa permission folder
-   - Pastikan ada cukup ruang disk 
+   - Pastikan ada cukup ruang disk
