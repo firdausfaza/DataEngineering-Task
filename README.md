@@ -41,75 +41,75 @@ Dataset ini berisi informasi tentang perjalanan taksi di New York City, termasuk
 
 ### Diagram Alur ETL
 ```
-┌─────────────┐
-│    Start    │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│  Download   │
-│    Data     │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│ File Exists?│
-└──────┬──────┘
-       │
-   ┌───┴───┐
-   │       │
-   ▼       ▼
-┌─────┐ ┌─────┐
-│ Yes │ │ No  │
-└──┬──┘ └──┬──┘
-   │       │
-   ▼       ▼
-┌─────┐ ┌─────┐
-│Skip │ │Download│
-└──┬──┘ └──┬──┘
-   │       │
-   └───┬───┘
-       │
-       ▼
-┌─────────────┐
-│ Load Data   │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│ Transform   │
-│   Data      │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│  Validate   │
-│   Data      │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│ Duplicate?  │
-└──────┬──────┘
-       │
-   ┌───┴───┐
-   │       │
-   ▼       ▼
-┌─────┐ ┌─────┐
-│ Yes │ │ No  │
-└──┬──┘ └──┬──┘
-   │       │
-   ▼       ▼
-┌─────┐ ┌─────────────┐
-│ Log │ │ Load to DB  │
-└──┬──┘ └──────┬──────┘
-   │           │
-   └─────┬─────┘
-         │
-         ▼
-┌─────────────┐
-│    End      │
-└─────────────┘
+                                                                              ┌─────────────┐
+                                                                              │    Start    │
+                                                                              └──────┬──────┘
+                                                                                    │
+                                                                                    ▼
+                                                                              ┌─────────────┐
+                                                                              │  Download   │
+                                                                              │    Data     │
+                                                                              └──────┬──────┘
+                                                                                    │
+                                                                                    ▼
+                                                                              ┌─────────────┐
+                                                                              │ File Exists?│
+                                                                              └──────┬──────┘
+                                                                                    │
+                                                                                 ┌───┴───┐
+                                                                                 │       │
+                                                                                 ▼       ▼
+                                                                              ┌─────┐ ┌─────┐
+                                                                              │ Yes │ │ No  │
+                                                                              └──┬──┘ └──┬──┘
+                                                                                 │       │
+                                                                                 ▼       ▼
+                                                                              ┌─────┐ ┌─────┐
+                                                                              │Skip │ │Download│
+                                                                              └──┬──┘ └──┬──┘
+                                                                                 │       │
+                                                                                 └───┬───┘
+                                                                                    │
+                                                                                    ▼
+                                                                              ┌─────────────┐
+                                                                              │ Load Data   │
+                                                                              └──────┬──────┘
+                                                                                    │
+                                                                                    ▼
+                                                                              ┌─────────────┐
+                                                                              │ Transform   │
+                                                                              │   Data      │
+                                                                              └──────┬──────┘
+                                                                                    │
+                                                                                    ▼
+                                                                              ┌─────────────┐
+                                                                              │  Validate   │
+                                                                              │   Data      │
+                                                                              └──────┬──────┘
+                                                                                    │
+                                                                                    ▼
+                                                                              ┌─────────────┐
+                                                                              │ Duplicate?  │
+                                                                              └──────┬──────┘
+                                                                                    │
+                                                                                 ┌───┴───┐
+                                                                                 │       │
+                                                                                 ▼       ▼
+                                                                              ┌─────┐ ┌─────┐
+                                                                              │ Yes │ │ No  │
+                                                                              └──┬──┘ └──┬──┘
+                                                                                 │       │
+                                                                                 ▼       ▼
+                                                                              ┌─────┐ ┌─────────────┐
+                                                                              │ Log │ │ Load to DB  │
+                                                                              └──┬──┘ └──────┬──────┘
+                                                                                 │           │
+                                                                                 └─────┬─────┘
+                                                                                       │
+                                                                                       ▼
+                                                                              ┌─────────────┐
+                                                                              │    End      │
+                                                                              └─────────────┘
 ```
 
 ### Diagram Arsitektur Sistem
@@ -360,9 +360,8 @@ Parameter:
 ## Dokumentasi
 
 Untuk dokumentasi lebih detail, silakan merujuk ke:
-1. Google Document yang berisi penjelasan lengkap
-2. Video presentasi yang menjelaskan implementasi
-3. Log file untuk detail proses ETL
+1. Video presentasi yang menjelaskan implementasi
+2. Log file untuk detail proses ETL
 
 ## Troubleshooting
 

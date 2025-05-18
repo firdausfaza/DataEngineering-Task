@@ -1,10 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-"""
-Run SQL Queries Script
-This script runs all the SQL queries from the solutions.sql file and displays the results.
-"""
 
 import os
 import sys
