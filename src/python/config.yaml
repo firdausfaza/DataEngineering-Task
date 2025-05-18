@@ -1,0 +1,44 @@
+# Konfigurasi ETL NY Taxi
+database:
+  table_name: taxi_trips
+  batch_size: 10000
+
+data:
+  columns:
+    required:
+      - vendor_id
+      - pickup_datetime
+      - dropoff_datetime
+      - passenger_count
+      - trip_distance
+      - pickup_location_id
+      - rate_code
+      - store_and_fwd_flag
+      - dropoff_location_id
+      - payment_type
+      - fare_amount
+      - extra
+      - mta_tax
+      - tip_amount
+      - tolls_amount
+      - improvement_surcharge
+      - total_amount
+      - data_source
+      - trip_date
+
+  sources:
+    yellow:
+      url_template: "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_{year}-{month:02d}.parquet"
+      datetime_columns:
+        pickup: tpep_pickup_datetime
+        dropoff: tpep_dropoff_datetime
+    green:
+      url_template: "https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_{year}-{month:02d}.parquet"
+      datetime_columns:
+        pickup: lpep_pickup_datetime
+        dropoff: lpep_dropoff_datetime
+
+logging:
+  level: INFO
+  file: ny_taxi_etl.log
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s" 
