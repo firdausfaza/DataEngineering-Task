@@ -39,3 +39,5 @@ pgdata_purwadika/
 # OS
 .DS_Store
 Thumbs.db 
+
+.parquet
